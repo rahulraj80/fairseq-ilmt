@@ -39,6 +39,7 @@ class ConcatDataset(FairseqDataset):
         return self.datasets[dataset_idx][sample_idx]
 
     def get_corpus_id(self, idx):
+        print(">"*30, f"Self:{self}:t:{str(type(self))}:::{idx}:::")
         dataset_idx, sample_idx = self._get_dataset_and_sample_index(idx)
         return self.datasets[dataset_idx].corpus_id
 
