@@ -128,14 +128,15 @@ class LanguagePairDataset(FairseqDataset):
         tgt_item = self.tgt[index] if self.tgt is not None else None
         src_item = self.src[index]
         
-        print(">"*30, f"calling get corpus for Self:{self.src}:t:{str(type(self.src))}:Self[0]:{self.src[0]}:t:{str(type(self.src[0]))}:Self[0][0]:{self.src[0][0]}:t:{str(type(self.src[0][0]))}:::{index}:::")
+        print(">"*30, f"calling get corpus for Self:{self}:t:{str(type(self))}:")#Self[0]:{self.src[0]}:t:{str(type(self.src[0]))}:Self[0][0]:{self.src[0][0]}:t:{str(type(self.src[0][0]))}:::{index}:::")
+        print(">"*30, f" Self src:{self.src}:t:{str(type(self.src))}:Self[0]:{self.src[0]}:t:{str(type(self.src[0]))}:Self[0][0]:{self.src[0][0]}:t:{str(type(self.src[0][0]))}:::{index}:::")
         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> calling get corpus for 
         # Self:[tensor([  262, 10398,     2])]:t:<class 'list'>:
         # Self[0]:tensor([  262, 10398,     2]):t:<class 'torch.Tensor'>:
         # Self[0][0]:262:t:<class 'torch.Tensor'>:::0:::
 
-        src_id = torch.stack([a.get_corpus_id(index) for a in self.src[0]])
-        #src_id = self.src.get_corpus_id(index)
+        #src_id = torch.stack([a.get_corpus_id(index) for a in self.src[0]])
+        src_id = self.src.get_corpus_id(index)
         tgt_id = self.tgt.get_corpus_id(index)
 
         # format of id: 'tag lang'
